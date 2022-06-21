@@ -1,0 +1,31 @@
+pipeline {
+    agent {
+        label 'nodejs-agent'
+    }
+    stages {
+        stage('Source') {
+            steps {
+                git "https://github.com/Santaca/teammanager.git"
+            }
+        }
+        stage('Unit Tests'){
+            steps{
+                sh 'npm test > logs/test.log'
+                archiveArtifacts artifacts: 'logs/test.log'
+            }
+        }
+        stage('Build app'){
+            steps{
+                sh 'npm i && npm start'
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs()
+        }
+        failure {
+            echo "Algo salió mal"
+        }
+    }
+}
