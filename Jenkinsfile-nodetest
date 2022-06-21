@@ -1,7 +1,15 @@
 pipeline {
-    agent {
+    agent  {
         label 'nodejs-agent'
     }
+    
+    environment {
+        TEAM_MANAGER_MONGODB_URI="mongodb://35.180.138.66/teammanager"
+        TEAM_MANAGER_TEST_MONGODB_URI="mongodb://35.180.138.66/teammanager"
+        TEAM_MANAGER_PORT=4444
+        TEAM_MANAGER_SECRET_KEY="some-secure-token"
+    }
+    
     stages {
         stage('Source') {
             steps {
@@ -9,20 +17,15 @@ pipeline {
             }
         }
         stage('Install dependencies') {
-            steps {
-                sh 'npm install'
+            steps{
+                sh 'npm install'   
             }
         }
         stage('Unit Tests'){
             steps{
                 sh 'mkdir logs'
                 sh 'npm test > logs/test.log'
-                archiveArtifacts artifacts: 'logs/test.log'
-            }
-        }
-        stage('Build app'){
-            steps{
-                sh 'npm start'
+                archiveArtifacts artifacts: 'logs/'
             }
         }
     }
