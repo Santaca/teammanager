@@ -160,3 +160,4 @@ describe('Schema', function(){
 
 });//describe-Schema
 
+mongoose.connection.close()
