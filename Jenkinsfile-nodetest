@@ -8,6 +8,9 @@ pipeline {
                 git "https://github.com/Santaca/teammanager.git"
             }
         }
+        stage('Install dependencies') {
+            sh 'npm install'
+        }
         stage('Unit Tests'){
             steps{
                 sh 'mkdir logs'
@@ -17,7 +20,7 @@ pipeline {
         }
         stage('Build app'){
             steps{
-                sh 'npm i && npm start'
+                sh 'npm start'
             }
         }
     }
