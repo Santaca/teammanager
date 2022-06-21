@@ -10,6 +10,7 @@ pipeline {
         }
         stage('Unit Tests'){
             steps{
+                sh 'mkdir logs'
                 sh 'npm test > logs/test.log'
                 archiveArtifacts artifacts: 'logs/test.log'
             }
