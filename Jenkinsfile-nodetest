@@ -4,10 +4,10 @@ pipeline {
     }
     
     environment {
-        TEAM_MANAGER_MONGODB_URI="mongodb://35.180.138.66/teammanager"
-        TEAM_MANAGER_TEST_MONGODB_URI="mongodb://35.180.138.66/teammanager"
-        TEAM_MANAGER_PORT=4444
-        TEAM_MANAGER_SECRET_KEY="some-secure-token"
+        TEAM_MANAGER_MONGODB_URI=${TEAM_MANAGER_MONGODB_URI}
+        TEAM_MANAGER_TEST_MONGODB_URI=${TEAM_MANAGER_TEST_MONGODB_URI}
+        TEAM_MANAGER_PORT=${TEAM_MANAGER_PORT}
+        TEAM_MANAGER_SECRET_KEY=${TEAM_MANAGER_SECRET_KEY}
     }
     
     stages {
