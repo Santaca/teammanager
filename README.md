@@ -3,7 +3,7 @@ Open source team/project management system written in MEAN stack.
 
 ## Features
 
-Team manager has the following features::
+Team manager has the following features:
  - Token based auth, login/signup
  - REST APIs (with token auth)
  - A team manager registers his/her account, create a team and invites team members.
