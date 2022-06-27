@@ -1,0 +1,4 @@
+TEAM_MANAGER_MONGODB_URI=mongodb://13.38.61.168/teammanager
+TEAM_MANAGER_PORT=4444
+TEAM_MANAGER_SECRET_KEY=some-secure-token
+
