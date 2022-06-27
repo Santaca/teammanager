@@ -6,7 +6,6 @@ pipeline {
     environment {
         ECR_URI = "${ECR_URI}"
         REGION = "eu-west-3"
-        IMAGE_NAME = 'unir/teammanager'
     }
 
     stages {
@@ -18,7 +17,7 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    dockerImage = docker.build '${IMAGE_NAME}' 
+                    dockerImage = docker.build ECR_URI
                 }
             }
         }
@@ -26,7 +25,7 @@ pipeline {
             steps {
                 script {
                     sh 'aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${ECR_URI}'
-                    sh 'docker push ${IMAGE_NAME}'
+                    sh 'docker push ${ECR_URI}'
                 }
             }
         }
