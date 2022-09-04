@@ -1,0 +1,24 @@
+pipeline {
+    agent {
+        label 'kubernetes-agent'
+    }
+    
+    stages {
+        stage('Source') {
+            steps {
+                git "https://github.com/Santaca/teammanager"
+            }
+        }
+        stage('Apply configmap') {
+            steps {
+                sh 'kubectl apply --validate=true -f teammanager-cm.yaml'
+            }
+        }
+        stage('Apply deployment') {
+            steps {
+                sh 'kubectl apply --validate=true -f teammanager-deployment.yaml'
+            }
+        }
+    }
+    
+}
