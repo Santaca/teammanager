@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Apply HPA') {
             steps {
-                sh 'kubectl apply --validate=true -f teammanager-hpa.yaml'
+                sh 'kubectl autoscale deployment teammanager-deploy --min=2 --max=6'
             }
         }
     }
