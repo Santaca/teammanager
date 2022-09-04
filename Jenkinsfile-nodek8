@@ -19,6 +19,11 @@ pipeline {
                 sh 'kubectl apply --validate=true -f teammanager-deployment.yaml'
             }
         }
+        stage('Apply HPA') {
+            steps {
+                sh 'kubectl apply --validate=true -f teammanager-hpa.yaml'
+            }
+        }
     }
     
 }
