@@ -13,20 +13,20 @@ spec:
     metadata:
       labels:
         app: teammanager
-  spec:
-    containers:
-      - name: teammanager
-        image: 892266550564.dkr.ecr.eu-west-3.amazonaws.com/jenkins_unir:latest
-        env:
-          - name: TEAM_MANAGER_MONGODB_URI
-            value: "mongodb://db-service/teammanager"
-          - name: TEAM_MANAGER_TEST_MONGODB_URI
-            value: "mongodb://db-service/teammanager-test"
-          - name: TEAM_MANAGER_PORT
-            value: "4444"
-          - name: TEAM_MANAGER_SECRET_KEY
-            value: "some-key"
-          - name: TEST_VAR
-            value: "prueba://$(db-service)"
-        ports:
-          - containerPort: 4444
+    spec:
+      containers:
+        - name: teammanager
+          image: 892266550564.dkr.ecr.eu-west-3.amazonaws.com/jenkins_unir:latest
+          env:
+            - name: TEAM_MANAGER_MONGODB_URI
+              value: "mongodb://db-service/teammanager"
+            - name: TEAM_MANAGER_TEST_MONGODB_URI
+              value: "mongodb://db-service/teammanager-test"
+            - name: TEAM_MANAGER_PORT
+              value: "4444"
+            - name: TEAM_MANAGER_SECRET_KEY
+              value: "some-key"
+            - name: TEST_VAR
+              value: "prueba://$(db-service)"
+          ports:
+            - containerPort: 4444
