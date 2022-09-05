@@ -9,19 +9,19 @@ pipeline {
                 git "https://github.com/Santaca/teammanager"
             }
         }
-        stage('Apply configmap') {
+        stage('Apply mongodb yaml') {
             steps {
-                sh 'kubectl apply --validate=true -f teammanager-cm.yaml'
+                sh 'kubectl apply --validate=true -f db-deployment.yaml'
             }
         }
-        stage('Apply deployment') {
+        stage('Apply teammanager yaml') {
             steps {
                 sh 'kubectl apply --validate=true -f teammanager-deployment.yaml'
             }
         }
-        stage('Apply HPA') {
+        stage('Apply hpas yaml') {
             steps {
-                sh 'kubectl autoscale deployment teammanager-deploy --min=2 --max=6'
+                sh 'kubectl apply --validate=true -f teammanager-hpa.yaml'
             }
         }
     }
