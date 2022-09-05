@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: teammanger-cm
-data:
-  TEAM_MANAGER_MONGODB_URI: "mongodb://ec2-54-211-204-189.compute-1.amazonaws.com/teammanager"
-  TEAM_MANAGER_TEST_MONGODB_URI: "mongodb://ec2-54-211-204-189.compute-1.amazonaws.com/teammanager-test"
-  TEAM_MANAGER_PORT: "4444"
-  TEAM_MANAGER_SECRET_KEY: "some-key"
