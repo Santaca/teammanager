@@ -17,7 +17,7 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    dockerImage = docker.build '${ECR_URI}:${BUILD_ID}'
+                    sh 'docker build . -t ${ECR_URI}:${BUILD_ID}'
                 }
             }
         }
