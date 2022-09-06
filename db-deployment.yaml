@@ -3,12 +3,12 @@ kind: Service
 metadata:
         name: db-service
         labels:
-                app: teammanager
+                app: teammanager-db
 spec:
   ports:
     - port: 27017
   selector:
-          app: teammanager
+          app: teammanager-db
   clusterIP: None
 
 ---
@@ -18,16 +18,16 @@ kind: Deployment
 metadata:
   name: mongodb-deploy
   labels:
-    app: teammanager
+    app: teammanager-db
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: teammanager
+      app: teammanager-db
   template:
     metadata:
       labels:
-        app: teammanager
+        app: teammanager-db
     spec:
       containers:
         - name: mongodb-teammanager
