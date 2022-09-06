@@ -25,7 +25,14 @@ pipeline {
             steps {
                 script {
                     sh 'aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${ECR_URI}'
-                    sh 'docker push ${ECR_URI}'
+                    sh 'docker push ${ECR_URI}:${BUILD_ID}'
+                }
+            }
+        }
+        stage('Clean node') {
+            steps {
+                script {
+                    sh 'docker rmi $(docker images -q)'
                 }
             }
         }
