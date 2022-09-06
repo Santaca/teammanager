@@ -17,7 +17,7 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    dockerImage = docker.build ECR_URI
+                    dockerImage = docker.build '${ECR_URI}:${BUILD_ID}'
                 }
             }
         }
@@ -40,6 +40,7 @@ pipeline {
     post{
         always {
            cleanWs()
+           sh 'docker rmi $(docker images -q)'
         }
         failure {
             echo 'Algo salió mal :(. Se ha notificado mediante correo electónico'
