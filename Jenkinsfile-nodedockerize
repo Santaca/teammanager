@@ -17,7 +17,7 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    sh 'docker build . -t ${ECR_URI}:${BUILD_ID}'
+                    sh 'docker build . -t ${ECR_URI}'
                 }
             }
         }
@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     sh 'aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${ECR_URI}'
-                    sh 'docker push ${ECR_URI}:${BUILD_ID}'
+                    sh 'docker push ${ECR_URI}'
                 }
             }
         }
@@ -40,7 +40,6 @@ pipeline {
     post{
         always {
            cleanWs()
-           sh 'docker rmi $(docker images -q)'
         }
         failure {
             echo 'Algo salió mal :(. Se ha notificado mediante correo electónico'
